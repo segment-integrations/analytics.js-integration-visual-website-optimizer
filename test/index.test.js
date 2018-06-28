@@ -148,6 +148,25 @@ describe('Visual Website Optimizer', function() {
         done();
       });
     });
+    
+    it('should send experiment views as non-interactive if enabled', function(done) {
+      vwo.options.listen = true;
+      vwo.options.experimentNonInteractive = true;
+      analytics.initialize();
+      analytics.page();
+
+      tick(function() {
+        window._vis_opt_queue[1]();
+
+        analytics.called(analytics.track, 'Experiment Viewed', {
+          experimentId: '1',
+          variationName: 'Variation', 
+          nonInteractive: 1 },
+          { context: { integration: { name: 'visual-website-optimizer', version: '1.0.0' } }
+        });
+        done();
+      });
+    });
   });
 
   describe('after loading', function() {
