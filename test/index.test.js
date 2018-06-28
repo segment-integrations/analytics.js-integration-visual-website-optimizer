@@ -152,7 +152,7 @@ describe('Visual Website Optimizer', function() {
 
     it('should send experiment views as non-interactive if enabled', function(done) {
       vwo.options.listen = true;
-      vwo.options.experimentNonInteractive = true;
+      vwo.options.experimentNonInteraction = true;
       analytics.initialize();
       analytics.page();
 
@@ -162,7 +162,7 @@ describe('Visual Website Optimizer', function() {
         analytics.called(analytics.track, 'Experiment Viewed', {
           experimentId: '1',
           variationName: 'Variation',
-          nonInteractive: 1 },
+          nonInteraction: 1 },
           { context: { integration: { name: 'visual-website-optimizer', version: '1.0.0' } }
         });
         done();
